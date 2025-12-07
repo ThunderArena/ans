@@ -1,4 +1,4 @@
-#include <iomanip> // Required for std::setprecision
+#include <iomanip> 
 
 #include "ns3/applications-module.h"
 #include "ns3/core-module.h"
@@ -9,8 +9,9 @@
 #include "ns3/wifi-module.h"
 #include "ns3/netanim-module.h"
 
+
 using namespace ns3;
-using namespace ns3::energy;
+//using namespace ns3::energy;
 
 NS_LOG_COMPONENT_DEFINE("MmWaveIoT_Simulation");
 
@@ -21,13 +22,14 @@ RxCallback(const Ptr<const Packet> packet, const Address& addr)
 {
     g_packetsReceived++;
 }
-
-void EnergyTrace(std::string context, double oldValue, double newValue)
+//std::string context,   << context << "," 
+void EnergyTrace( double oldValue, double newValue)
 {
     std::ofstream out("energy-log.txt", std::ios::app);
-    out << Simulator::Now().GetSeconds() << "," << context << "," << newValue << std::endl;
+    out << Simulator::Now().GetSeconds() << "," << newValue << std::endl;
     out.close();
 }
+
 
 int
 main(int argc, char* argv[])
